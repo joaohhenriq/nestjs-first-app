@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, Get } from "@nestjs/common";
 import { ProductsService } from "./products.service";
 
 @Controller('products')
@@ -13,6 +13,11 @@ export class ProductsController {
     ) {
         const generatedId = this.productsService.insertProduct(prodTitle, prodDesc, prodPrice)
 
-        return { id: generatedId }
+        return { id: generatedId } // converts to object (json) explicity
+    }
+
+    @Get()
+    getAllProducts() {
+        return this.productsService.getAllProducts() // nest automatically identify that's a json type
     }
 }
