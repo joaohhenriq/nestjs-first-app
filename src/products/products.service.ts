@@ -52,4 +52,9 @@ export class ProductsService {
 
         return [product, productIndex]
     }
+
+    deleteProduct(prodId: string) {
+        const [product, index] = this.findProduct(prodId)
+        this.products.splice(index, 1) //remove one element
+    }
 }
